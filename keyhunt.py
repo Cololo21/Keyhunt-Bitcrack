@@ -9,13 +9,13 @@ colorama.init()
 # ----------------------
 # CONFIGURACIÓN
 # ----------------------
-BITCRACK_PATH = r"C:\Users\colol\Desktop_App\bitcrackrandomiser\bitcrack\cuBitcrack.exe"
+BITCRACK_PATH = r"  EDIT THIS YOUR ROUTE  ~~~   \bitcrack\cuBitcrack.exe "
 NUM_GPUS = 2
 RANGE_START = int("400000000000000000", 16)
 RANGE_END   = int("7fffffffffffffffff", 16)
 TARGET_ADDRESS = "1PWo3JeB9jrGwfHDNpdGK54CRas7fsVzXU"
-RESULTS_FILE = r"C:\Users\colol\OneDrive\Escritorio\BTC\keyhunt_bitcrack_results.txt"
-PROGRESS_FILE = r"C:\Users\colol\OneDrive\Escritorio\BTC\keyhunt_bitcrack_progress.json"
+RESULTS_FILE = r"  EDIT THIS YOUR ROUTE"
+PROGRESS_FILE = r"  EDIT THIS YOUR ROUTE"
 
     BAR_LENGTH = 30
 AUTO_SAVE_INTERVAL = 20
@@ -183,3 +183,4 @@ if __name__ == "__main__":
     start_keyhunt_dashboard()
     elapsed = time.time() - start_time
     print(f"Tiempo total de ejecución: {int(elapsed // 3600)}h {int((elapsed % 3600) // 60)}m {int(elapsed % 60)}s")
+
