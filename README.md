@@ -1,2 +1,9 @@
-RANGE_START = 400000000000000000   ascedent  40 to 7f
-RANGE_END   = 7fffffffffffffffff   ascedent  7f to 40
+2 GPU
+
+RANGE_START = 400000000000000000   ascedent  40 to 0x5f
+RANGE_END   = 7fffffffffffffffff   ascedent  0x5f to 7f
+
+
+RANGE_START	4,611,686,018,427,387,904	0x400000000000000000
+RANGO MEDIO	6,917,529,027,641,081,855	0x5fffffffffffffff
+RANGE_END	9,223,372,036,854,775,807	0x7fffffffffffffffff
