@@ -1,7 +1,7 @@
-2 GPU
+2 GPU   ASCENDENT
 
-RANGE_START = 400000000000000000   ascedent  40 to 0x5f
-RANGE_END   = 7fffffffffffffffff   ascedent  0x5f to 7f
+RANGE_START = 400000000000000000     40 to 0x5f
+RANGE_END   = 7fffffffffffffffff     0x5f to 7f
 
 
 RANGE_START	4,611,686,018,427,387,904	0x400000000000000000
