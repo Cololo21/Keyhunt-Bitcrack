@@ -1,0 +1,132 @@
+"""Configuración centralizada del sistema"""
+
+import os
+import json
+
+CONFIG_FILE = os.environ.get("BITCRACK_CONFIG", "config.json")
+
+DEFAULT_CONFIG = {
+    "ADDRESS": "1PWo3JeB9jrGwfHDNpdGK54CRas7fsVzXU",
+    "GLOBAL_START": "0x400000000000000000",
+    "GLOBAL_END": "0x7fffffffffffffffff",
+
+    "SLICE_COUNT": 100_000_000,
+    "GPU_COUNT": 2,
+
+    "WATCHDOG_TIMEOUT": 45,
+    "RESTART_DELAY": 3,
+
+    "RETRY_ALERT_MINS": 5,
+
+    "BITCRACK_BIN": "./bin/cuBitCrack.exe",
+    "BITCRACK_ARGS": ["-b", "96", "-t", "256", "-p", "1024", "-c"],
+
+    "BASE_DIR": "Datos",
+    "BACKUP_KEEP_DAYS": 7,
+
+    "PORT": 8000,
+
+    "THROTTLE_SPEED_PCT": 20,
+
+    "EXPLORE_RATE": 0.65,
+    "FITNESS_EMA_ALPHA": 0.15,
+    "ELITE_WINDOW": 20,
+    "GUIDED_SIGMA": 500,
+
+    "BANDIT_MACRO": 100,
+    "BANDIT_MESO": 100,
+    "BANDIT_MICRO": 100,
+
+    "BANDIT_UCB_C": 0.3,
+    "BANDIT_DECAY": 0.995,
+
+    "BANDIT_PRIOR_ALPHA": 2.1,
+    "BANDIT_PRIOR_BETA": 1.8,
+
+    "BANDIT_TOPK": 50,
+
+    "API_TOKEN": "changeme123"
+}
+
+
+def load_config():
+    cfg = dict(DEFAULT_CONFIG)
+
+    if os.path.exists(CONFIG_FILE):
+        try:
+            with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+                user = json.load(f)
+            cfg.update(user)
+            print(f"[CONFIG] Cargado desde {CONFIG_FILE}")
+        except Exception as e:
+            print(f"[CONFIG] Error leyendo config: {e}")
+    else:
+        with open(CONFIG_FILE, "w", encoding="utf-8") as f:
+            json.dump(DEFAULT_CONFIG, f, indent=2)
+        print(f"[CONFIG] Creado {CONFIG_FILE}")
+
+    return cfg
+
+
+CFG = load_config()
+
+# =========================================================
+# EXPORTS (SEGUROS)
+# =========================================================
+
+ADDRESS = CFG["ADDRESS"]
+
+GLOBAL_START = int(CFG["GLOBAL_START"], 16)
+GLOBAL_END = int(CFG["GLOBAL_END"], 16)
+
+TOTAL_RANGE = GLOBAL_END - GLOBAL_START + 1
+SLICE_COUNT = CFG["SLICE_COUNT"]
+SLICE_SIZE = TOTAL_RANGE // SLICE_COUNT
+
+GPU_COUNT = CFG["GPU_COUNT"]
+
+WATCHDOG_TIMEOUT = CFG["WATCHDOG_TIMEOUT"]
+RESTART_DELAY = CFG["RESTART_DELAY"]
+
+BITCRACK_BIN = CFG["BITCRACK_BIN"]
+BITCRACK_ARGS = CFG["BITCRACK_ARGS"]
+
+BASE_DIR = os.path.join(os.path.dirname(__file__), CFG["BASE_DIR"])
+
+PROGRESS_DIR = os.path.join(BASE_DIR, "progress")
+RESULTS_DIR = os.path.join(BASE_DIR, "results")
+LOG_DIR = os.path.join(BASE_DIR, "logs")
+BACKUP_DIR = os.path.join(BASE_DIR, "backups")
+
+SLICES_FILE = os.path.join(PROGRESS_DIR, "completed_slices.json")
+GPU_STATE_FILE = os.path.join(PROGRESS_DIR, "gpu_state.json")
+BANDIT_STATE_FILE = os.path.join(PROGRESS_DIR, "bandit_state.json")
+
+EXPLORE_RATE = CFG["EXPLORE_RATE"]
+FITNESS_EMA_ALPHA = CFG["FITNESS_EMA_ALPHA"]
+EMA_ALPHA = FITNESS_EMA_ALPHA
+ELITE_WINDOW = CFG["ELITE_WINDOW"]
+GUIDED_SIGMA = CFG["GUIDED_SIGMA"]
+
+BANDIT_MACRO = CFG["BANDIT_MACRO"]
+BANDIT_MESO = CFG["BANDIT_MESO"]
+BANDIT_MICRO = CFG["BANDIT_MICRO"]
+
+BANDIT_UCB_C = CFG["BANDIT_UCB_C"]
+BANDIT_DECAY = CFG["BANDIT_DECAY"]
+
+BANDIT_PRIOR_A = CFG["BANDIT_PRIOR_ALPHA"]
+BANDIT_PRIOR_B = CFG["BANDIT_PRIOR_BETA"]
+
+BANDIT_TOPK = CFG["BANDIT_TOPK"]
+
+API_TOKEN = CFG["API_TOKEN"]
+
+BACKUP_KEEP_DAYS = CFG["BACKUP_KEEP_DAYS"]
+
+PORT = CFG["PORT"]
+THROTTLE_SPEED_PCT = CFG["THROTTLE_SPEED_PCT"]  # ← LÍNEA AGREGADA
+
+# ensure dirs exist
+for d in [PROGRESS_DIR, RESULTS_DIR, LOG_DIR, BACKUP_DIR]:
+    os.makedirs(d, exist_ok=True)
