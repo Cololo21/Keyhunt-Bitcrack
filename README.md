@@ -1,9 +1,10 @@
-2 GPU   ASCENDENT
-
-RANGE_START = 400000000000000000     40 to 0x5f
-RANGE_END   = 7fffffffffffffffff     0x5f to 7f
-
-
-RANGE_START	4,611,686,018,427,387,904	0x400000000000000000
-RANGO MEDIO	6,917,529,027,641,081,855	0x5fffffffffffffff
-RANGE_END	9,223,372,036,854,775,807	0x7fffffffffffffffff
+[requirements.txt](https://github.com/user-attachments/files/28832806/requirements.txt)
+fastapi==0.104.1 
+uvicorn==0.24.0 
+websockets==12.0 
+slowapi==0.1.9 
+python-multipart==0.0.6 
+ecdsa==0.18.0 
+base58==2.1.1 
+coincurve==19.0.0 
+pydantic==2.5.0 
