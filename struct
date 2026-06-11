@@ -1,0 +1,44 @@
+bitcrack_monitor/
+├── app.py
+├── config.py
+├── requirements.txt
+├── dashboard.html
+│
+├── core/
+│   ├── __init__.py
+│   ├── bandit.py
+│   ├── fitness.py
+│   └── scheduler.py
+│
+├── gpu/
+│   ├── __init__.py
+│   ├── worker.py
+│   ├── bitcrack.py
+│   └── metrics.py
+│
+├── state/
+│   ├── __init__.py
+│   ├── slices.py
+│   ├── persistence.py
+│   └── global_state.py
+│
+├── api/
+│   ├── __init__.py
+│   ├── routes.py
+│   ├── websocket.py
+│   └── middleware.py
+│
+├── monitoring/
+│   ├── __init__.py
+│   ├── logs.py
+│   ├── heatmap.py
+│   └── backup.py
+│
+├── benchmark/
+│   ├── __init__.py
+│   └── bench.py
+│
+└── utils/
+    ├── __init__.py
+    ├── crypto.py
+    └── helpers.py
